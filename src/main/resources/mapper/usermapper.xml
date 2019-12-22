@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mp.cmfz.dao.UserDao">
+
+    <select id="findUserByRegisterTime" resultType="int">
+        SELECT COUNT(id) FROM `user`  WHERE DATEDIFF(NOW(),create_date) between #{start} and #{end}
+    </select>
+
+    <select id="findUserCountByMap" resultType="ProvinceDto">
+        SELECT province as name,COUNT(id) as value FROM `user` WHERE `user`.sex = #{sex} GROUP BY `user`.province
+    </select>
+</mapper>
